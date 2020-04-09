@@ -1,5 +1,5 @@
-import { Bookmark } from "../entities/bookmark.js";
-import { Tag } from "../entities/tag.js";
+import Bookmark from "../entities/bookmark.js";
+import Tag  from "../entities/tag.js";
 
 
 export function makeListBookmarks({ bookmarksDB }) {
