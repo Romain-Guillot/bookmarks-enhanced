@@ -9,7 +9,12 @@ RESPONSABILITY
 */
 import makeGetBookmarks from './get_bookmarks.js' 
 import makePostBookmarks from './post_bookmark.js'
-import { listBookmarks, addBookmark } from '../use_cases/index.js'
+import makeDeleteBookmark from './delete_bookmark.js'
+import { 
+  listBookmarks,
+  addBookmark,
+  removeBookmark
+} from '../use_cases/index.js'
 
 export const getBookmarks = makeGetBookmarks({
   listBookmarks: listBookmarks
@@ -17,4 +22,8 @@ export const getBookmarks = makeGetBookmarks({
 
 export const postBookmark = makePostBookmarks({
   addBookmark: addBookmark
+})
+
+export const deleteBookmark = makeDeleteBookmark({
+  removeBookmark: removeBookmark
 })

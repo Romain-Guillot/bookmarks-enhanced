@@ -15,8 +15,13 @@ export async function makeDb () {
   return client.db('bookmarks-enhanced')
 }
 
+export function makeId(id) {
+  return new mongodb.ObjectID(id)
+}
+
 export const bookmarksDatabase = new BookmarksDatabase({
-  makeDb: makeDb
+  makeDb: makeDb,
+  makeId: makeId
 })
 
 

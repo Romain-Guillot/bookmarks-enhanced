@@ -8,7 +8,7 @@ export default function makeAddBookmark({ bookmarksDB }) {
       tags: bookmarkData.tags
     })
     return await bookmarksDB.insert({
-      bookmarkData : {
+      data : {
         title: bookmark.title,
         url: bookmark.url,
         tags: bookmark.tags,

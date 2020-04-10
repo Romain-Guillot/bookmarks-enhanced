@@ -1,6 +1,7 @@
 # Bookmark enhanced
 Project to learn:
 * [Node.js](), [Express]()
+* [MongoDB]()
 * [Vue.js]()
 * [Docker]()
 
@@ -28,3 +29,7 @@ This project is composed of a microservice API and a web client to communicate w
 * [Client (`client/`)](server/README.md): Vue.js, HTML/CSS 
 
 **Note: refer to the server and client README for more information (installation, architecture, ...).**
+
+
+## Web client screenshots
+TODO

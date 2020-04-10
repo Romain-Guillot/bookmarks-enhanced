@@ -2,8 +2,9 @@
  * 
  */
 class BookmarksDatabase {
-  constructor({ makeDb }) {
+  constructor({ makeDb, makeId }) {
     this.makeDb = makeDb
+    this.makeId = makeId
     this.collectionName = 'bookmarks'
   }
 
@@ -19,17 +20,28 @@ class BookmarksDatabase {
     }))
   }
 
-  async insert({ bookmarkData }) {
+  async insert({ data }) {
     const db = await this.makeDb()
     const insertResult = await db.collection(this.collectionName).insertOne({
-      title: bookmarkData.title,
-      url: bookmarkData.url,
-      tags: bookmarkData.tags,
-      createAt: bookmarkData.createAt
+      title: data.title,
+      url: data.url,
+      tags: data.tags,
+      createAt: data.createAt
     })
     return {
       id: insertResult.insertedId,
       ...bookmarkData
+    }
+  }
+
+  async remove({ id }) {
+    const db = await this.makeDb()
+    const removeResult = await db.collection(this.collectionName).removeOne({
+      _id: this.makeId(id)
+    })
+    console.log(removeResult)
+    return {
+      fakeData: "TBD"
     }
   }
 }
