@@ -20,7 +20,12 @@ export default {
     }
   },
 
-  async addBookmark ({ data }) {
+  async addBookmark ({ bookmark }) {
+    const data = {
+      title: bookmark.title,
+      url: bookmark.url,
+      tags: bookmark.tags.map(tag => tag.id)
+    }
     const res = await axios.post('/bookmarks/', data)
     console.log(res)
   },

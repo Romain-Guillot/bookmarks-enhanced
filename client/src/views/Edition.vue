@@ -25,6 +25,10 @@ export default {
   margin-top: 50vh;
   transform: translateY(-50%);
 }
+.home-link {
+  display: block;
+  margin-bottom: 40px;
+}
 .home-link:before {
   content: "🔙"
 }
