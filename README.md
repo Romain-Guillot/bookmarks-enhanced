@@ -9,16 +9,16 @@ Project to learn:
 Propose a service to manage enhanced bookmarks with tags.  
 
 User stories:
-* Add bookmark with title, tags, link
-* View all bookmarks
-* Edit bookmark
-* Remove bookmark
-* Filter bookmarks with tags
-* Sort tags by created date or title
-* Add new tag with name and color
-* View all tags
-* Remove tag
-* Edit tag
+* [x] Add bookmark with title, tags, link
+* [x] View all bookmarks
+* [ ] Edit bookmark
+* [ ] Remove bookmark
+* [ ] Filter bookmarks with tags
+* [ ] Sort tags by created date or title
+* [ ] Add new tag with name and color
+* [ ] View all tags
+* [ ] Remove tag
+* [ ] Edit tag
 
 
 ## Server / Client
