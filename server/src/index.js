@@ -1,6 +1,5 @@
 import express from 'express'
-import { getBookmarks } from './controllers/index.js'
-
+import { getBookmarks, postBookmark } from './controllers/index.js'
 
 const app = express()
 
@@ -12,11 +11,21 @@ const corsConfig = function(req, res, next) {
   next()
 }
 app.use(corsConfig);
+app.use(express.json())
 
 app.listen(3000, () => console.log('Server ready'))
 
 app.get('/bookmarks/', (req, res) => {
   getBookmarks().then((httpResponse) => {
+    res.type('json')
+    res.status(httpResponse.statusCode)
+    res.send(httpResponse.body)
+  })
+})
+
+app.post('/bookmarks/', (req, res) => {
+  console.log(req.body)
+  postBookmark(req).then((httpResponse) => {
     res.type('json')
     res.status(httpResponse.statusCode)
     res.send(httpResponse.body)

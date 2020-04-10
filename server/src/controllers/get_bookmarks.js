@@ -1,6 +1,6 @@
-export function makeGetBookmarks({ listBookmarks }) {
+export default function makeGetBookmarks({ listBookmarks }) {
   return async () => {
-    console.log("CONTROLLER : Make bookmarks")
+    console.log("CONTROLLER: Make bookmarks")
     const headers = {
       'Content-Type': 'application/json'
     }

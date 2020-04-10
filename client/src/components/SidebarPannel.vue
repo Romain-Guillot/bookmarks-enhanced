@@ -40,9 +40,9 @@
       <p>Tags: 54</p>
     </div>
 
-    <!-- <div class="side-child">
-      <a class="github-link emoji-link" href="{{ github }}" target="_blank">Github</a>
-    </div> -->
+    <div class="side-child">
+      <a class="github-link emoji-link" :href="github" target="_blank">Github</a>
+    </div>
     
     <div class="side-child">
       {{ version }}

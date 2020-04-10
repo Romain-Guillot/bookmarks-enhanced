@@ -7,9 +7,14 @@ RESPONSABILITY
     and serialized data)
   * Return an HTTP response (with status code and serialized data)
 */
-import { makeGetBookmarks } from './get_bookmarks.js' 
-import { listBookmarks } from '../use_cases/index.js'
+import makeGetBookmarks from './get_bookmarks.js' 
+import makePostBookmarks from './post_bookmark.js'
+import { listBookmarks, addBookmark } from '../use_cases/index.js'
 
 export const getBookmarks = makeGetBookmarks({
   listBookmarks: listBookmarks
+})
+
+export const postBookmark = makePostBookmarks({
+  addBookmark: addBookmark
 })
