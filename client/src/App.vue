@@ -34,6 +34,11 @@ body {
 a {
   text-decoration: underline;
   color: $front-color;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
 }
 
 .emoji-link:before {

@@ -10,9 +10,16 @@ export default {
       return map
     }, {})
     const bookmarks = res.data.bookmarks.map((data) => {
+      let tags = []
       if (data.tags)
-        data.tags = data.tags.map(tagID => tags[tagID])
-      return data
+        tags = data.tags.map(tagID => tags[tagID])
+      return {
+        id: data.id,
+        url: data.url,
+        title: data.title,
+        createdAt: data.createdAt,
+        tags: tags
+      }
     })
     return {
       bookmarks: bookmarks,
@@ -27,11 +34,21 @@ export default {
       tags: bookmark.tags.map(tag => tag.id)
     }
     const res = await axios.post('/bookmarks/', data)
-    console.log(res)
+    return { data: res.data }
   },
 
-  async deleteBookmark () {
-
+  async deleteBookmark ({ bookmark }) {
+    const res = await axios.delete('/bookmarks/', {data: {id: bookmark.id}})
+    console.log(res)
+    if (res.status === 200) {
+      return {
+        id: res.data.id
+      }
+    } else {
+      return {
+        error: "Cannot remove this bookmark"
+      }
+    }
   },
 
   async updateBookmark () {

@@ -1,12 +1,12 @@
 <template>
-  <a href="" class="bookmark-item-container">
+  <a :href="bookmarkItem.url" target="_blank" class="bookmark-item-container">
     <div class="bookmark-main">
-      <h2>{{ bookmarkItem.title }}</h2><span class="bookmark-date">16 Apr, 2020</span>
-      <span class="bookmark-link" href="">http://example.com</span>
+      <h2>{{ bookmarkItem.title }}</h2><span class="bookmark-date">{{ bookmarkItem.createAt }}</span>
+      <span class="bookmark-link">{{ bookmarkItem.url }}</span>
     </div>
     <div class="bookmark-options">
-      <a class="bookmark-edit emoji-link">Edit</a>
-      <a class="bookmark-remove emoji-link">Remove</a>
+      <router-link to="/edition" class="bookmark-edit emoji-link">Edit</router-link>
+      <a v-on:click.prevent="remove" class="bookmark-remove emoji-link">Remove</a>
     </div>
   </a>
 </template>
@@ -16,6 +16,11 @@
   export default {
     name: "BookmarkItem",
     props: ['bookmarkItem'],
+    methods: {
+      remove () {
+        this.$store.dispatch('removeBookmark', this.bookmarkItem)
+      }
+    }
   }
 </script>
 

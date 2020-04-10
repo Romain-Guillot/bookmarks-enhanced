@@ -17,17 +17,30 @@ export default new Vuex.Store({
       commit('setTags', res.tags)
     },
     async addBookmark ({ commit }, bookmark) {
-      console.log('addd')
-      await bookmarksAPI.addBookmark({ bookmark: {
+      const res = await bookmarksAPI.addBookmark({ bookmark: {
         title: bookmark.title,
         url: bookmark.link,
         tags: bookmark.tags
       }})
-      commit('addBookmark', bookmark)
+      commit('addBookmark', res.data)
+    },
+    async removeBookmark({ commit }, bookmark) {
+      const res = await bookmarksAPI.deleteBookmark({ bookmark })
+      if (res.error) {
+        console.log(res.error)
+      } else {
+        commit('removeBookmark', res.id)
+      }
     }
   },
 
   mutations: {
+    removeBookmark(state, bookmarkID) {
+      const index = state.bookmarks.findIndex(b => b.id === bookmarkID)
+      console.log(index)
+      state.bookmarks.splice(index, 1)
+      console.log(state.bookmarks)
+    },
     addBookmark(state, bookmark) {
       state.bookmarks.push(bookmark)
     },

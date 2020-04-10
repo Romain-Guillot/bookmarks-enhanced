@@ -75,7 +75,6 @@ input[type=text]:focus, button{
 }
 button {
   margin: auto;
-  cursor: pointer;
 }
 button:before {
   content: "💾"

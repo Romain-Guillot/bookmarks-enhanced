@@ -39,8 +39,15 @@ class BookmarksDatabase {
     const removeResult = await db.collection(this.collectionName).removeOne({
       _id: this.makeId(id)
     })
-    return {
-      fakeData: "TBD"
+    if (removeResult.deletedCount) {
+      return {
+        deletedCount: removeResult.deletedCount,
+        id: id
+      }
+    } else {
+      return {
+        error: "Cannot delete this bookmark"
+      }
     }
   }
 }
