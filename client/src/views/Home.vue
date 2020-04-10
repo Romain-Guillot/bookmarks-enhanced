@@ -34,11 +34,12 @@ export default {
 
   aside {
     grid-area: sidebar;
-    padding: 50px;
+    padding: 0 0 0 20px;
   }
 
   .home {
     grid-area: main;
+    padding: 0 20px;
   }
 }
 

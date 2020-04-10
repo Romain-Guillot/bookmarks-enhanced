@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sidebar-container">
     <div class="side-child">
       <router-link to="/edition" class="add-bookmark emoji-link">Add new bookmark</router-link>
     </div>
@@ -71,6 +71,9 @@ export default {
 
 <style lang="scss" scoped >
 @import '../assets/style/variables.scss';
+.sidebar-container {
+  padding-top: 20px;
+}
 
 .side-child {
   padding: 20px 0;

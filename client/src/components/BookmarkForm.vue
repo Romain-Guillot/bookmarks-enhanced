@@ -10,16 +10,24 @@
     </div>
     <div class="form-child">
       <label for="tags">Tags</label>
+      <TagList />
     </div>
 
-    <input v-on:click="save" type="submit" value="Save">
+    <div class="form-child submit-container">
+      <button v-on:click="save" type="submit" class="emoji-link">Save</button>
+    </div>
   </div>
 </template>
 
 
 <script>
+import TagList from './TagList'
+
 export default {
   name: 'BookmarkForm',
+  components: {
+    TagList
+  },
   data() {
     return {
       bookmark : {
@@ -44,24 +52,38 @@ export default {
 @import "../assets/style/variables.scss";
 
 label {
-  font-size: 1.2em;
+  font-size: 1em;
   display: block;
+  padding-bottom: 2px;
+}
+input[type=text], button {
+  display: block;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 1em;
+  background: rgba($front-color, 0.1);
+  color: $front-color;
 }
 input[type=text] {
-  display: block;
-  border: none;
   width:100%;
-  background: rgba($front-color, 0.1);
-  padding: 10px;
-  font-size: 1.1em;
-  color: $front-color;
-  border-radius: 6px;
+
 }
-input[type=text]:focus{
+input[type=text]:focus, button{
   outline-width: 0;
   border: none;
-  border-radius: 6px;
 }
+button {
+  margin: auto;
+  cursor: pointer;
+}
+button:before {
+  content: "💾"
+}
+.submit-container {
+  padding-top: 20px;
+}
+
 .form-child {
   padding-bottom: 20px;
 }
