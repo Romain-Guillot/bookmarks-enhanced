@@ -1,6 +1,7 @@
 import mongodb from 'mongodb'
 
 import BookmarksDatabase from './bookmarks-db.js'
+import TagsDatabase from './tags-db.js'
 
 
 const url = 'mongodb://127.0.0.1:27017'
@@ -24,6 +25,9 @@ export const bookmarksDatabase = new BookmarksDatabase({
   makeId: makeId
 })
 
-
+export const tagsDatabase = new TagsDatabase({
+  makeDb: makeDb,
+  makeId: makeId
+})
 
 

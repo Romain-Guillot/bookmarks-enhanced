@@ -4,16 +4,22 @@ import Tag  from "../entities/tag.js";
 
 export default function makeListBookmarks({ bookmarksDB }) {
   return async function listComment({ userID }) {
-    const bookmarksData = await bookmarksDB.findAll();
-    const bookmarks = bookmarksData.map(bookmarkData => {
-      const tags = []
-      return new Bookmark({
-        id: bookmarkData.id,
-        title: bookmarkData.title,
-        url: bookmarkData.url,
-        tags: tags
-      })
-    });
-    return bookmarks;
+    const bookmarksData = await bookmarksDB.find();
+    const tagsData = await bookmarksDB.find();
+    const bookmarks = bookmarksData.map(bookmarkData => { return {
+      id: bookmarkData.id,
+      title: bookmarkData.title,
+      url: bookmarkData.url,
+      tags: bookmarksData.tags
+    }});
+    const tags = tagsData.map(tagsData => { return {
+      id: tagsData.id,
+      name: tagsData.name,
+      tags: tagsData.tags,
+    }})
+    return {
+      bookmarks: bookmarks,
+      tags: tags
+    };
   }
 }

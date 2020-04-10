@@ -1,12 +1,7 @@
 import express from 'express'
-import { 
-  getBookmarks, 
-  postBookmark,
-  deleteBookmark
-} from './controllers/index.js'
+import makeRoutes from './routes.js'
 
 const app = express()
-
 const corsConfig = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
   res.header('Access-Control-Allow-Credentials', true)
@@ -16,33 +11,11 @@ const corsConfig = function(req, res, next) {
 }
 app.use(corsConfig);
 app.use(express.json())
-
 app.listen(3000, () => console.log('Server ready'))
 
-app.get('/bookmarks/', (req, res) => {
-  getBookmarks().then((httpResponse) => {
-    res.type('json')
-    res.status(httpResponse.statusCode)
-    res.send(httpResponse.body)
-  })
+makeRoutes({
+  app: app
 })
-
-app.post('/bookmarks/', (req, res) => {
-  postBookmark(req).then((httpResponse) => {
-    res.type('json')
-    res.status(httpResponse.statusCode)
-    res.send(httpResponse.body)
-  })
-})
-
-app.delete('/bookmarks/', (req, res) => {
-  deleteBookmark(req).then((httpResponse) => {
-    res.type('json')
-    res.status(httpResponse.statusCode)
-    res.send(httpResponse.body)
-  })
-})
-
 
 process.on('SIGTERM', () => {
   server.close(() => {
