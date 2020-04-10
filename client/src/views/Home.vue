@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import HelloWorld from '@/components/HelloWorld.vue'
 import SidebarPannel from '@/components/SidebarPannel'
 
@@ -21,9 +20,6 @@ export default {
     HelloWorld,
     SidebarPannel
   },
-  created() {
-    axios.get("bookmarks").then((res) => console.log(res))
-  }
 }
 </script>
 

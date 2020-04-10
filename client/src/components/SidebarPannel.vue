@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="side-child">
-      <a class="add-bookmark emoji-link" href="">Add new bookmark</a>
+      <router-link to="/edition" class="add-bookmark emoji-link">Add new bookmark</router-link>
     </div>
 
     <div class="side-child">
-      <TagList v-bind:tags="tags" />
+      <TagList />
     </div>
     
     <div class="side-child">
@@ -60,7 +60,6 @@ export default {
     return {
       version: process.env.VUE_APP_VERSION,
       github: process.env.VUE_APP_GITHUB,
-      tags: []
     }
   },
   components: {

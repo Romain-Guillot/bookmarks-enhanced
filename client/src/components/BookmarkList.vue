@@ -20,6 +20,9 @@ export default {
     bookmarks () {
       return this.$store.state.bookmarks
     }
+  },
+  created () {
+    this.$store.dispatch('getAllBookmarks')
   }
 }
 </script>
