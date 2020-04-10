@@ -1,4 +1,5 @@
 class Tag {
+  // TODO: check if color is correct
   constructor({ id, name, color }) {
     this.id = id;
     this.name = name;
@@ -7,3 +8,4 @@ class Tag {
 }
 
 export default Tag
+

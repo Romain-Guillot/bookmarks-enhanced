@@ -1,6 +1,6 @@
 export default function makePostBookmark({ addBookmark }) {
   return async (httpRequest) => {
-    console.log("CONTROLLER: Add bookmarks")
+    console.log("CONTROLLER: post bookmark")
     const headers = {
       'Content-Type': 'application/json'
     }

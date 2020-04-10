@@ -1,7 +1,8 @@
 import { 
   getBookmarks, 
   postBookmark,
-  deleteBookmark
+  deleteBookmark,
+  postTag
 } from './controllers/index.js'
 
 export default function makeRoutes({ app }) {
@@ -23,6 +24,14 @@ export default function makeRoutes({ app }) {
   
   app.delete('/bookmarks/', (req, res) => {
     deleteBookmark(req).then((httpResponse) => {
+      res.type('json')
+      res.status(httpResponse.statusCode)
+      res.send(httpResponse.body)
+    })
+  })
+
+  app.post('/tags/', (req, res) => {
+    postTag(req).then((httpResponse) => {
       res.type('json')
       res.status(httpResponse.statusCode)
       res.send(httpResponse.body)

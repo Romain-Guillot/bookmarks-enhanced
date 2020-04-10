@@ -9,7 +9,6 @@
 
 
 <script>
-import axios from 'axios'
 import BookmarkItem from './BookmarkItem'
 
 export default {
@@ -17,15 +16,10 @@ export default {
   components: {
     BookmarkItem
   },
-  data: function () {
-    return {
-      bookmarks: undefined
+  computed: {
+    bookmarks () {
+      return this.$store.state.bookmarks
     }
-  },
-  mounted () {
-    axios
-      .get("/bookmarks")
-      .then(res => this.bookmarks = res.data)
   }
 }
 </script>
