@@ -19,7 +19,7 @@ class TagsDatabase {
     const db = await this.makeDb()
     const insertResult = await db.collection(this.collectionName).insertOne({
       name: data.name,
-      color: data.url,
+      color: data.color,
     })
     return {
       id: insertResult.insertedId,
