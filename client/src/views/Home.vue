@@ -33,7 +33,7 @@ export default {
   display: grid;
   grid-template-columns: 400px auto;
   grid-template-areas: "sidebar main";
-  max-width: 1200px;
+  max-width: 1400px;
   margin: auto;
 
   aside {

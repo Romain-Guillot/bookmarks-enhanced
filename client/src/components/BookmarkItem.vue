@@ -23,12 +23,15 @@
 <style lang="scss" scoped>
   @import "../assets/style/variables.scss";
 
+  .bookmark-item-container:hover {
+    background-color: rgba($front-color, .05);
+  }
 
   .bookmark-item-container {
     display: block;
     text-decoration: none;
     margin: 0;
-    padding: 15px 0;
+    padding: 13px 0;
     border-bottom: 1px solid rgb(70,70,70);
     display: grid;
     grid-template-areas: "main options";
@@ -62,6 +65,7 @@
       grid-area: "options";
       a {
         display: block;
+        margin: 10px 0;
       }
       .bookmark-edit:before {
         content: "🖊️";

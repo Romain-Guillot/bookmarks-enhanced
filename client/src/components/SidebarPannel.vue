@@ -40,12 +40,12 @@
       <p>Tags: 54</p>
     </div>
 
-    <div class="side-child">
-      <a class="github-link emoji-link" href="">Github</a>
-    </div>
+    <!-- <div class="side-child">
+      <a class="github-link emoji-link" href="{{ github }}" target="_blank">Github</a>
+    </div> -->
     
     <div class="side-child">
-      v2020.100
+      {{ version }}
     </div>
   </div>
 </template>
@@ -58,6 +58,8 @@ export default {
   name: "SidebarPannel",
   data () {
     return {
+      version: process.env.VUE_APP_VERSION,
+      github: process.env.VUE_APP_GITHUB,
       tags: []
     }
   },
