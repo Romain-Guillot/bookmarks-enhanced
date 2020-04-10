@@ -12,8 +12,7 @@ See also :
 
 
 ## Purpose
-Microservice API to manage bookmarks (get, remove, edit). A bookmark is composed
-of a title, an url, a creation date, and some tags.  
+Microservice API to manage bookmarks (get, remove, edit). A bookmark is composed of a title, an url, a creation date, and some tags.  
 A tag is composed of a name and a color.
 
 
