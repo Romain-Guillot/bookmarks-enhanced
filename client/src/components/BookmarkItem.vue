@@ -1,6 +1,7 @@
 <template>
-  <a :href="bookmarkItem.url" target="_blank" :class="condensed + ' bookmark-item-container'">
+  <a :href="bookmarkItem.url" target="_blank" class="bookmark-item-container" v-bind:class="condensed ? 'condensed-item' : 'expanded-item'">
     <div class="bookmark-main">
+      <TagItem v-for="tag in bookmarkItem.tags" v-bind:key="tag.id" v-bind:tag=tag v-bind:condensed=condensed /><br>
       <h2>{{ bookmarkItem.title }}</h2><span class="bookmark-date">{{ bookmarkItem.createdAt }}</span>
       <span class="bookmark-link">{{ bookmarkItem.url }}</span>
     </div>
@@ -13,21 +14,25 @@
 
 
 <script>
-  export default {
-    name: "BookmarkItem",
-    props: ['bookmarkItem'],
-    methods: {
-      remove () {
-        this.$store.dispatch('bookmarks/removeBookmark', this.bookmarkItem)
-      }
-    },
-    computed: {
-      condensed () {
-        console.log("OK")
-        return this.$store.state.uiConfig.condensed ? "condensed" : "expanded"
-      }
+import TagItem from './TagItem'
+
+export default {
+  name: "BookmarkItem",
+  props: ['bookmarkItem'],
+  components: {
+    TagItem
+  },
+  methods: {
+    remove () {
+      this.$store.dispatch('bookmarks/removeBookmark', this.bookmarkItem)
+    }
+  },
+  computed: {
+    condensed () {
+      return this.$store.state.uiConfig.condensed
     }
   }
+}
 </script>
 
 
@@ -73,7 +78,7 @@
 }
 
 
-.condensed {
+.condensed-item {
   padding: 5px 0;
   .bookmark-main {
     h2 {
@@ -94,7 +99,7 @@
   }
 }
 
-.expanded {
+.expanded-item {
   padding: 13px 0;
   
   .bookmark-main {

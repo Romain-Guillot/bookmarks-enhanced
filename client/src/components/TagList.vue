@@ -2,14 +2,8 @@
   <div>
     <div v-if="tags.length">No tags</div>
     <ul class="tags-container" v-else>
-      <li 
-        class="tag-card"
-        v-bind:class="isSelected(tag)"
-        v-bind:style="{ background: 'rgb(' + tag.color.r + ',' + tag.color.g + ',' + tag.color.b + ')' }" 
-        v-for="tag in tags" v-bind:key="tag.id"
-        v-on:click="selectTag(tag)">
-          {{ tag.name }}
-          
+      <li v-for="tag in tags" v-bind:key="tag.id" v-on:click="selectTag(tag)">
+          <TagItem v-bind:tag="tag" v-bind:isSelected="isSelected(tag)" />
       </li>
     </ul>
     <a v-on:click="deselectAll">Deselect all</a>
@@ -20,8 +14,13 @@
 
 
 <script>
+import TagItem from './TagItem'
+
 export default {
   name: "TagList",
+  components: {
+    TagItem
+  },
   data () {
     return {
       selectedTags: []
@@ -30,7 +29,7 @@ export default {
   computed: {
     tags () {
       return this.$store.state.bookmarks.tags
-    }
+    },
   },
   methods: {
     selectTag (tag) {
@@ -50,7 +49,7 @@ export default {
       this.$emit('changed', this.selectedTags)
     },
     isSelected (tag) {
-      return this.selectedTags.includes(tag) ? "selected" : ""
+      return this.selectedTags.includes(tag)
     },
   }
 }
@@ -62,20 +61,8 @@ export default {
   padding: 0;
   margin: 0;
   list-style-type: none;
-}
-
-.tag-card {
-  display: inline-block;
-  padding: 10px;
-  border-radius: 6px;
-  margin: 0 5px 5px 0;
-  cursor: pointer;
-}
-
-.selected {
-  font-weight: 700;
-}
-.selected:before {
-  content: "✔"
+  li {
+    display: inline-block;
+  }
 }
 </style>

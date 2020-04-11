@@ -10,9 +10,9 @@ export default {
       return map
     }, {})
     const bookmarks = res.data.bookmarks.map((data) => {
-      let tags = []
-      if (data.tags)
-        tags = data.tags.map(tagID => tags[tagID])
+      let bookmarkTags = []
+      if (data.tags != null)
+        bookmarkTags = data.tags.map(tagID => tags[tagID])
       const dateFormatOpts = { year: 'numeric', month: 'short', day: 'numeric' }
       let date = ''
       if (data.createdAt)
@@ -22,7 +22,7 @@ export default {
         url: data.url,
         title: data.title,
         createdAt: date,
-        tags: tags
+        tags: bookmarkTags
       }
     })
     return {

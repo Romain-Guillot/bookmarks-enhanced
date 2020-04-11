@@ -27,14 +27,15 @@ export default {
 <style lang="scss" scoped>
 .main-container {
   display: grid;
-  grid-template-columns: 400px auto;
+  grid-template-columns: 350px auto;
+  grid-column-gap: 20px;
   grid-template-areas: "sidebar main";
   max-width: 1400px;
   margin: auto;
 
   aside {
     grid-area: sidebar;
-    padding: 0 0 0 20px;
+    padding: 0 20px;
   }
 
   .home {
