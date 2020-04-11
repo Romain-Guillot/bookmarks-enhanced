@@ -40,7 +40,7 @@ export default {
   methods: {
     save () {
       console.log("OK")
-      this.$store.dispatch('addBookmark', this.bookmark)
+      this.$store.dispatch('bookmarks/addBookmark', this.bookmark)
       // this.$store.dispatch('updateBookmark')
     }
   }

@@ -29,7 +29,7 @@
     </div>
 
     <div class="side-child">
-      <a class="condense-list emoji-link" href="">Condense</a>
+      <a v-on:click="toggleCondense" :class="'density-' + itemDensityMode + ' emoji-link'">{{itemDensityMode}}</a>
       <a class="surprise-me emoji-link" href="">Suprise me !</a>
       <a class="download-bookmarks emoji-link" href="">Download</a>
     </div>
@@ -64,6 +64,16 @@ export default {
   },
   components: {
     TagList
+  },
+  computed: {
+    itemDensityMode () {
+      return this.$store.state.uiConfig.condensed ?  'Expand' : 'Condense'
+    }
+  },
+  methods: {
+    toggleCondense() {
+      this.$store.commit('uiConfig/toggleCondense')
+    }
   }
 }
 </script>
@@ -87,8 +97,11 @@ a, p {
 .add-bookmark:before {
   content: "🆕";
 }
-.condense-list:before {
+.density-Condense:before {
   content: "🔽";
+}
+.density-Expand:before {
+  content: "🔼";
 }
 .surprise-me:before {
   content: "🔀";

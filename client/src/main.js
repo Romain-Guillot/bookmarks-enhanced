@@ -8,7 +8,7 @@ Vue.config.productionTip = false
 
 axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
 
-store.dispatch('getAllBookmarks')
+store.dispatch('bookmarks/getAllBookmarks')
 
 new Vue({
   router,
