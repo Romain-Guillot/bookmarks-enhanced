@@ -1,7 +1,7 @@
 <template>
   <a :href="bookmarkItem.url" target="_blank" :class="condensed + ' bookmark-item-container'">
     <div class="bookmark-main">
-      <h2>{{ bookmarkItem.title }}</h2><span class="bookmark-date">{{ bookmarkItem.createAt }}</span>
+      <h2>{{ bookmarkItem.title }}</h2><span class="bookmark-date">{{ bookmarkItem.createdAt }}</span>
       <span class="bookmark-link">{{ bookmarkItem.url }}</span>
     </div>
     <div class="bookmark-options">

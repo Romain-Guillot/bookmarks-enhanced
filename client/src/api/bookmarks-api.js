@@ -13,11 +13,15 @@ export default {
       let tags = []
       if (data.tags)
         tags = data.tags.map(tagID => tags[tagID])
+      const dateFormatOpts = { year: 'numeric', month: 'short', day: 'numeric' }
+      let date = ''
+      if (data.createdAt)
+        date = (new Date(data.createdAt)).toLocaleDateString(undefined, dateFormatOpts)
       return {
         id: data.id,
         url: data.url,
         title: data.title,
-        createdAt: data.createdAt,
+        createdAt: date,
         tags: tags
       }
     })
@@ -39,7 +43,6 @@ export default {
 
   async deleteBookmark ({ bookmark }) {
     const res = await axios.delete('/bookmarks/', {data: {id: bookmark.id}})
-    console.log(res)
     if (res.status === 200) {
       return {
         id: res.data.id
@@ -58,7 +61,7 @@ export default {
 
 
 function intToRgb(int) {
-  if (typeof int !== 'undefined')
+  if (int == null)
     return {r: 0, g: 0, b: 0}
   const hex = int.toString(16)
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

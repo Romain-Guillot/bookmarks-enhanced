@@ -10,7 +10,8 @@ export default function makeListBookmarks({ bookmarksDB, tagsDB }) {
       id: bookmarkData.id,
       title: bookmarkData.title,
       url: bookmarkData.url,
-      tags: bookmarksData.tags
+      tags: bookmarkData.tags,
+      createdAt: bookmarkData.createdAt
     }});
     const tags = tagsData.map(tagsData => { return {
       id: tagsData.id,

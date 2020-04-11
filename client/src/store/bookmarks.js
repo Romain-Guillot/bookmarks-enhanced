@@ -33,9 +33,7 @@ const actions = {
 const mutations = {
   removeBookmark(state, bookmarkID) {
     const index = state.bookmarks.findIndex(b => b.id === bookmarkID)
-    console.log(index)
     state.bookmarks.splice(index, 1)
-    console.log(state.bookmarks)
   },
   addBookmark(state, bookmark) {
     state.bookmarks.push(bookmark)

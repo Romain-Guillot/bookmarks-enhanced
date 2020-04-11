@@ -10,7 +10,7 @@
     </div>
     <div class="form-child">
       <label for="tags">Tags</label>
-      <TagList />
+      <TagList v-on:changed="onSelectedTagsChanged" />
     </div>
 
     <div class="form-child submit-container">
@@ -38,10 +38,12 @@ export default {
     }
   },
   methods: {
+    onSelectedTagsChanged (selectedTags) {
+      console.log("ok")
+      this.bookmark.tags = selectedTags
+    },
     save () {
-      console.log("OK")
       this.$store.dispatch('bookmarks/addBookmark', this.bookmark)
-      // this.$store.dispatch('updateBookmark')
     }
   }
 }

@@ -92,7 +92,7 @@ export default {
 a, p {
   display: block;
   margin: 0;
-  padding: 0;
+  padding: 4px 0;
 }
 .add-bookmark:before {
   content: "🆕";

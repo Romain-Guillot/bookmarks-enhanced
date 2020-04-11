@@ -15,7 +15,7 @@ class BookmarksDatabase {
       id: bookmarkData._id,
       title: bookmarkData.title,
       url: bookmarkData.url,
-      date: bookmarkData.createdAt,
+      createdAt: bookmarkData.createdAt,
       tags: bookmarkData.tags
     }))
   }
@@ -26,7 +26,7 @@ class BookmarksDatabase {
       title: data.title,
       url: data.url,
       tags: data.tags,
-      createAt: data.createAt
+      createdAt: data.createdAt
     })
     return {
       id: insertResult.insertedId,
