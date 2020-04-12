@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Edition from '../views/Edition.vue'
+import EditionTemplate from '../views/EditionTemplate.vue'
 
 Vue.use(VueRouter)
 
@@ -17,7 +17,18 @@ Vue.use(VueRouter)
   {
     path: '/edition',
     name: 'Edition',
-    component: Edition,
+    component: EditionTemplate,
+    props: {
+      child: 'BookmarkForm'
+    }
+  },
+  {
+    path: '/addtag',
+    name: 'Add tag',
+    component: EditionTemplate,
+    props: {
+      child: 'TagForm'
+    }
   }
 ]
 

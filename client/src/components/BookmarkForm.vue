@@ -53,39 +53,5 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/style/variables.scss";
 
-label {
-  font-size: 1em;
-  display: block;
-  padding-bottom: 2px;
-}
-input[type=text], button {
-  display: block;
-  border: none;
-  border-radius: 6px;
-  padding: 10px;
-  font-size: 1em;
-  background: rgba($front-color, 0.1);
-  color: $front-color;
-}
-input[type=text] {
-  width:100%;
 
-}
-input[type=text]:focus, button{
-  outline-width: 0;
-  border: none;
-}
-button {
-  margin: auto;
-}
-button:before {
-  content: "💾"
-}
-.submit-container {
-  padding-top: 20px;
-}
-
-.form-child {
-  padding-bottom: 20px;
-}
 </style>

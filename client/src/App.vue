@@ -1,22 +1,10 @@
 <template>
-  <div>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>-->
-    <router-view/> 
-  </div>
+  <router-view/> 
 </template>
 
-<script>
-
-
-export default {
-  
-}
-</script>
 
 <style lang="scss">
+// Base css
 @import 'assets/style/variables.scss';
 
 body {
@@ -45,6 +33,56 @@ button {
 .emoji-link:before {
   padding-right: 10px;
   display:inline-block;
+}
+
+label {
+  font-size: 1em;
+  display: block;
+  padding-bottom: 2px;
+}
+input[type=text], button {
+  display: block;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 1em;
+  background: rgba($front-color, 0.1);
+  color: $front-color;
+}
+input[type=text] {
+  width:100%;
+
+}
+input[type=text]:focus, button{
+  outline-width: 0;
+  border: none;
+}
+button {
+  margin: auto;
+}
+button:before {
+  content: "💾"
+}
+.submit-container {
+  padding-top: 20px;
+}
+
+.form-child {
+  padding-bottom: 20px;
+}
+
+.edition-container {
+  width: 500px;
+  margin: auto;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+}
+.home-link {
+  display: block;
+  margin-bottom: 40px;
+}
+.home-link:before {
+  content: "🔙"
 }
 
 </style>

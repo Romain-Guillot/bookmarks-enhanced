@@ -6,8 +6,11 @@
           <TagItem v-bind:tag="tag" v-bind:isSelected="isSelected(tag)" />
       </li>
     </ul>
-    <a v-on:click="deselectAll">Deselect all</a>
-    {{selectedTags.size}}
+    <div class="tags-opts">
+      <a v-on:click="deselectAll">Deselect all</a>
+      <router-link to="/addtag">Add new tag</router-link>
+    </div>
+
   </div>
 
 </template>
@@ -63,6 +66,12 @@ export default {
   list-style-type: none;
   li {
     display: inline-block;
+  }
+}
+.tags-opts {
+  a {
+    display: inline-block;
+    margin-right: 20px;
   }
 }
 </style>

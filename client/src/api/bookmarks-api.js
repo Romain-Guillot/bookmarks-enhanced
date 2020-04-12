@@ -1,8 +1,8 @@
 import axios from 'axios'
 
+
 export default {
   async getBookmarks () {
-    console.log("API: get bookmarks")
     const res = await axios.get('/bookmarks/')
     const tags = res.data.tags.reduce(function(map, obj) {
       obj.color = intToRgb(obj.color)
