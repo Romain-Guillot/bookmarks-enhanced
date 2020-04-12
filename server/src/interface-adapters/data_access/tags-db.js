@@ -30,7 +30,7 @@ export default {
   },
 
   async remove({ id }) {
-    const res = await BookmarkModel.deleteOne({ _id : id})
+    const res = await TagModel.deleteOne({ _id : id})
     if (res.deletedCount) {
       return {
         deletedCount: res.deletedCount,

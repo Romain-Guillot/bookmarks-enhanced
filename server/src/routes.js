@@ -3,7 +3,8 @@ import {
   getBookmarks, 
   postBookmark,
   deleteBookmark,
-  postTag
+  postTag,
+  deleteTag
 } from './interface-adapters/controllers/index.js'
 
 
@@ -35,6 +36,14 @@ router.delete('/bookmarks/', (req, res) => {
 
 router.post('/tags/', (req, res) => {
   postTag(req).then((httpResponse) => {
+    res.type('json')
+    res.status(httpResponse.statusCode)
+    res.send(httpResponse.body)
+  })
+})
+
+router.delete('/tags/', (req, res) => {
+  deleteTag(req).then((httpResponse) => {
     res.type('json')
     res.status(httpResponse.statusCode)
     res.send(httpResponse.body)
