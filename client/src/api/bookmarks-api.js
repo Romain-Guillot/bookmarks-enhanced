@@ -9,24 +9,8 @@ export default {
       map[obj.id] = obj
       return map
     }, {})
-    const bookmarks = res.data.bookmarks.map((data) => {
-      let bookmarkTags = []
-      if (data.tags != null)
-        bookmarkTags = data.tags.map(tagID => tags[tagID])
-      const dateFormatOpts = { year: 'numeric', month: 'short', day: 'numeric' }
-      let date = ''
-      if (data.createdAt)
-        date = (new Date(data.createdAt)).toLocaleDateString(undefined, dateFormatOpts)
-      return {
-        id: data.id,
-        url: data.url,
-        title: data.title,
-        createdAt: date,
-        tags: bookmarkTags
-      }
-    })
     return {
-      bookmarks: bookmarks,
+      bookmarks: res.data.bookmarks,
       tags: tags
     }
   },

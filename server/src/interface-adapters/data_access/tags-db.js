@@ -1,18 +1,17 @@
 class TagsDatabase {
-  constructor({ makeDb, makeId }) {
-    this.makeDb = makeDb
-    this.makeId = makeId
+  constructor() {
     this.collectionName = "tags"
   }
 
   async find() {
-    const db = await this.makeDb()
-    const data = await db.collection(this.collectionName).find({}).toArray()
-    return data.map(tagData => Object.freeze({
-      id: tagData._id,
-      name: tagData.name,
-      color: tagData.color,
-    }))
+    // const db = await this.makeDb()
+    // const data = await db.collection(this.collectionName).find({}).toArray()
+    // return data.map(tagData => Object.freeze({
+    //   id: tagData._id,
+    //   name: tagData.name,
+    //   color: tagData.color,
+    // }))
+    return {}
   }
 
   async insert({ data }) {

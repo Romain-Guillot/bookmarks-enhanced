@@ -2,8 +2,12 @@ import makeListBookmarks from './list_bookmarks.js'
 import makeAddBookmark from './add_bookmark.js'
 import makeRemoveBookmark from './remove_bookmark.js'
 import makeAddTag from './add_tag.js'
-import { bookmarksDatabase, tagsDatabase } from '../data_access/index.js'
+import { bookmarksDatabase, tagsDatabase } from '../interface-adapters/data_access/index.js'
 
+/*
+Note: we have a dependency here of the inteface-adapters layer to perform the
+dependency injection
+*/
 
 export const listBookmarks = makeListBookmarks({
   bookmarksDB: bookmarksDatabase,

@@ -8,9 +8,13 @@ const state = {
 
 const actions = {
   async getAllBookmarks ({ commit }) {
-    const res = await bookmarksAPI.getBookmarks()
-    commit('setBookmarks', res.bookmarks)
+    const res = (await bookmarksAPI.getBookmarks())
+
     commit('setTags', res.tags)
+    const bookmarks = res.bookmarks.map(b => preprocessBookmark(b))
+    console.log(bookmarks)
+    commit('setBookmarks', bookmarks)
+
   },
   async addBookmark ({ commit }, bookmark) {
     const res = await bookmarksAPI.addBookmark({ bookmark: {
@@ -18,7 +22,7 @@ const actions = {
       url: bookmark.link,
       tags: bookmark.tags
     }})
-    commit('addBookmark', res.data)
+    commit('addBookmark', preprocessBookmark(res.data))
   },
   async removeBookmark({ commit }, bookmark) {
     const res = await bookmarksAPI.deleteBookmark({ bookmark })
@@ -27,6 +31,23 @@ const actions = {
     } else {
       commit('removeBookmark', res.id)
     }
+  }
+}
+
+function preprocessBookmark(data) {
+  let bookmarkTags = []
+  if (data.tags != null)
+    bookmarkTags = data.tags.map(tagID => state.tags[tagID])
+  const dateFormatOpts = { year: 'numeric', month: 'short', day: 'numeric' }
+  let date = ''
+  if (data.createdAt)
+    date = (new Date(data.createdAt)).toLocaleDateString(undefined, dateFormatOpts)
+  return {
+    id: data.id,
+    url: data.url,
+    title: data.title,
+    createdAt: date,
+    tags: bookmarkTags
   }
 }
 

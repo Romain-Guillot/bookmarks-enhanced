@@ -1,5 +1,8 @@
 import express from 'express'
-import makeRoutes from './routes.js'
+import router from './routes.js'
+import mongoose from 'mongoose'
+
+import { BookmarkModel } from './interface-adapters/data_access/models.js'
 
 const app = express()
 const corsConfig = function(req, res, next) {
@@ -11,11 +14,20 @@ const corsConfig = function(req, res, next) {
 }
 app.use(corsConfig);
 app.use(express.json())
-app.listen(3000, () => console.log('Server ready'))
+app.use("/", router)
 
-makeRoutes({
-  app: app
+
+const url = 'mongodb://127.0.0.1:27017/bookmarks-enhanced'
+
+mongoose.connect(url, {useNewUrlParser: true}).then(() => {
+  const t = new BookmarkModel({title: "ok"})
+  t.save((err) => {console.log(err)})
+  console.log("Connected to mongo db")
+  app.listen(3000, () => console.log('Server ready'))
 })
+
+
+
 
 process.on('SIGTERM', () => {
   server.close(() => {
