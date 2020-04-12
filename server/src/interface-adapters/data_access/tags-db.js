@@ -1,46 +1,46 @@
-class TagsDatabase {
-  constructor() {
-    this.collectionName = "tags"
-  }
+import { TagModel } from './models.js'
 
+
+export default {
   async find() {
-    // const db = await this.makeDb()
-    // const data = await db.collection(this.collectionName).find({}).toArray()
-    // return data.map(tagData => Object.freeze({
-    //   id: tagData._id,
-    //   name: tagData.name,
-    //   color: tagData.color,
-    // }))
-    return {}
-  }
+    const res = await TagModel.find()
+    return res.map(tag => {
+      return {
+        id: tag.id,
+        name: tag.name,
+        color: tag.color
+      }
+    })
+  },
 
   async insert({ data }) {
-    const db = await this.makeDb()
-    const insertResult = await db.collection(this.collectionName).insertOne({
+    const tag = new TagModel({
       name: data.name,
-      color: data.color,
+      color: data.color
     })
+    const res = await tag.save()
     return {
-      id: insertResult.insertedId,
+      id: res._id,
       ...data
     }
-  }
+  },
 
   async update({ data }) {
 
-  }
+  },
 
   async remove({ id }) {
-    const db = await this.makeDb()
-    const removeResult = await db.collection(this.collectionName).removeOne({
-      _id: this.makeId(id)
-    })
-    if (removeResult.deletedCount) {
-      return {id: id}
+    const res = await BookmarkModel.deleteOne({ _id : id})
+    if (res.deletedCount) {
+      return {
+        deletedCount: res.deletedCount,
+        id: id
+      }
     } else {
-      return {error: "The tag doesn't exists"}
+      return {
+        error: "Cannot delete this tag"
+      }
     }
   }
 }
 
-export default TagsDatabase

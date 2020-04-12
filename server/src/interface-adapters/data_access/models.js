@@ -13,9 +13,8 @@ const bookmarkSchema = new mongoose.Schema({
   tags: [String]
 }) 
 
-
 const BookmarkModel = mongoose.model('Bookmark', bookmarkSchema, 'bookmarks')
-const TagModel = mongoose.model('Tag', tagSchema)
+const TagModel = mongoose.model('Tag', tagSchema, 'tags')
 
 export {
   BookmarkModel,

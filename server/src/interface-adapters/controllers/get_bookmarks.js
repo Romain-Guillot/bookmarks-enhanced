@@ -4,9 +4,7 @@ export default function makeGetBookmarks({ listBookmarks }) {
     const headers = {
       'Content-Type': 'application/json'
     }
-    const bookmarks = await listBookmarks({
-      userID: "id"
-    })
+    const bookmarks = await listBookmarks()
     return {
       headers,
       statusCode: 200,

@@ -1,8 +1,10 @@
-import BookmarksDatabase from './bookmarks-db.js'
-import TagsDatabase from './tags-db.js'
+import bookmarksDatabase from './bookmarks-db.js'
+import tagsDatabase from './tags-db.js'
 
 
-export const bookmarksDatabase = new BookmarksDatabase()
-export const tagsDatabase = new TagsDatabase()
+export {
+  bookmarksDatabase,
+  tagsDatabase
+}
 
 
