@@ -19,9 +19,7 @@ app.use("/", router)
 
 const url = 'mongodb://127.0.0.1:27017/bookmarks-enhanced'
 
-mongoose.connect(url, {useNewUrlParser: true}).then(() => {
-  const t = new BookmarkModel({title: "ok"})
-  t.save((err) => {console.log(err)})
+mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
   console.log("Connected to mongo db")
   app.listen(3000, () => console.log('Server ready'))
 })

@@ -25,10 +25,6 @@ export default {
     }
   },
 
-  async update({ data }) {
-
-  },
-
   async remove({ id }) {
     const res = await TagModel.deleteOne({ _id : id})
     if (res.deletedCount) {
