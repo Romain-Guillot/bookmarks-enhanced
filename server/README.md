@@ -4,6 +4,7 @@ NodeJS server to learn the technology.
 Stack :
 * [Node.js](https://nodejs.org/en/)
 * [Express](https://expressjs.com/)
+* [Swagger](https://swagger.io/)
 * [MongoDB](https://www.mongodb.com/)
 
 
