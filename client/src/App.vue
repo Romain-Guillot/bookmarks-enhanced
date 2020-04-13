@@ -40,20 +40,20 @@ label {
   display: block;
   padding-bottom: 2px;
 }
-input[type=text], button {
+input, button {
   display: block;
   border: none;
-  border-radius: 6px;
+  border-radius: $radius;
   padding: 10px;
   font-size: 1em;
   background: rgba($front-color, 0.1);
   color: $front-color;
 }
 input[type=text] {
-  width:100%;
+  width: calc(100% - 20px);
 
 }
-input[type=text]:focus, button{
+input:focus, button {
   outline-width: 0;
   border: none;
 }
@@ -71,18 +71,6 @@ button:before {
   padding-bottom: 20px;
 }
 
-.edition-container {
-  width: 500px;
-  margin: auto;
-  margin-top: 50vh;
-  transform: translateY(-50%);
-}
-.home-link {
-  display: block;
-  margin-bottom: 40px;
-}
-.home-link:before {
-  content: "🔙"
-}
+
 
 </style>

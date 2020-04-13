@@ -31,13 +31,22 @@ const actions = {
     } else {
       commit('removeBookmark', res.id)
     }
+  },
+  async addTag ({ commit }, tag) {
+    await bookmarksAPI.addTag({ tag })
+    commit('addTag', tag)
   }
 }
 
 function preprocessBookmark(data) {
   let bookmarkTags = []
   if (data.tags != null)
-    bookmarkTags = data.tags.map(tagID => state.tags[tagID])
+    bookmarkTags = data.tags.reduce((acc, tagID) => {
+      const tag = state.tags[tagID]
+      if (tag != null)
+        acc.push(tag)
+      return acc
+    }, [])
   const dateFormatOpts = { year: 'numeric', month: 'short', day: 'numeric' }
   let date = ''
   if (data.createdAt)
@@ -64,6 +73,9 @@ const mutations = {
   },
   setTags (state, tags) {
     state.tags = tags
+  },
+  addTag (state, tag) {
+    state.tags.push(tag)
   }
 }
 

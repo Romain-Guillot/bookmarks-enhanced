@@ -1,0 +1,42 @@
+// Override some props of : https://github.com/xiaokaike/vue-color
+
+@import './variables.scss';
+
+.vc-chrome {
+  width: 100% !important;
+  box-shadow: none !important;
+  border-radius: $radius !important;
+  background: $background !important;
+}
+.vc-chrome-saturation-wrap {
+  border-radius: $radius !important;
+}
+
+.vc-chrome-controls {
+  align-items: center;
+  justify-content: center;
+
+}
+.vc-chrome-body {
+  background: $background !important;
+  padding: 10px 0 !important;
+}
+.vc-checkerboard {
+  display: none;
+}
+.vc-chrome-color-wrap {
+  width: auto !important;
+  padding-right: 10px;
+}
+.vc-chrome-active-color {
+  height: 40px !important;
+  width: 40px !important;
+  border-radius: $radius !important;
+}
+
+.vc-alpha, .vc-chrome-toggle-btn, .vc-input__label, .vc-chrome-alpha-wrap, .vc-chrome-fields-wrap {
+  display: none !important;
+}
+.vc-chrome-hue-wrap {
+  margin-bottom: 0 !important;
+}

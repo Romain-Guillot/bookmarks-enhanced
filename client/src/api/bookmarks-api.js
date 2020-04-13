@@ -40,6 +40,11 @@ export default {
 
   async updateBookmark () {
 
+  },
+
+  async addTag({ tag }) {
+    const res = await axios.post('/tags/', tag)
+    return { data: res.data }
   }
 }
 

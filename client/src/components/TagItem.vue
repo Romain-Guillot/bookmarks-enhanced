@@ -22,10 +22,12 @@ export default {
 
 
 <style lang="scss" scoped>
+@import '../assets/style/variables.scss';
+
 .tag-card {
   display: inline-block;
   padding: 10px;
-  border-radius: 6px;
+  border-radius: $radius;
   margin: 0 5px 5px 0;
   cursor: pointer;
 }
