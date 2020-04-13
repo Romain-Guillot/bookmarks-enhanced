@@ -1,8 +1,10 @@
 <template>
   <a :href="bookmarkItem.url" target="_blank" class="bookmark-item-container" v-bind:class="condensed ? 'condensed-item' : 'expanded-item'">
     <div class="bookmark-main">
-      <TagItem v-for="tag in bookmarkItem.tags" v-bind:key="tag.id" v-bind:tag=tag v-bind:condensed=condensed /><br>
-      <h2>{{ bookmarkItem.title }}</h2><span class="bookmark-date">{{ bookmarkItem.createdAt }}</span>
+      <TagItem  v-for="tag in bookmarkItem.tags" v-bind:key="tag.id" v-bind:tag=tag v-bind:condensed=condensed />
+      <div>
+        <h2>{{ bookmarkItem.title }}</h2><span class="bookmark-date">{{ bookmarkItem.createdAt }}</span>
+      </div>
       <span class="bookmark-link">{{ bookmarkItem.url }}</span>
     </div>
     <div class="bookmark-options">
@@ -40,12 +42,9 @@ export default {
 @import "../assets/style/variables.scss";
 
 .bookmark-item-container {
-  display: block;
+  display: flex;
   text-decoration: none;
   margin: 0;
-  grid-template-areas: "main options";
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   border-bottom: 1px solid rgb(70,70,70);
   &:hover {
@@ -54,7 +53,8 @@ export default {
 }
 
 .bookmark-main {
-  grid-area: "main";
+  flex: 1;
+  grid-area: main;
   h2, .bookmark-date {
     display: inline-block;
     font-weight: 700;
@@ -68,7 +68,7 @@ export default {
 }
 
 .bookmark-options {
-  grid-area: "options";
+  grid-area: options;
   .bookmark-edit:before {
     content: "🖊️";
   }
@@ -93,15 +93,14 @@ export default {
     }
   }
   .bookmark-options a {
-    font-size: 0.9em;
     display: inline-block;
+    font-size: 0.9em;
     margin: 0 0 0 15px;
   }
 }
 
 .expanded-item {
   padding: 13px 0;
-  
   .bookmark-main {
     h2, .bookmark-date {
       font-size: 1.4em;
@@ -112,11 +111,10 @@ export default {
       color: $front-color-light;
     }
     .bookmark-link {
-      display: block;
       font-size: 1.2em;
     }
   }
-  .bookmark-options a {
+  .bookmark-options  a {
     display: block;
     margin: 10px 0;
   }

@@ -21,7 +21,6 @@ body {
 
 a {
   text-decoration: underline;
-  text-decoration-thickness: 5px;
   color: $front-color;
   cursor: pointer;
 }
