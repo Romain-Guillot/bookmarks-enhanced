@@ -9,7 +9,11 @@
       <span class="bookmark-link">{{ bookmarkItem.url }}</span>
     </div>
     <div class="bookmark-options">
-      <router-link to="/edition" class="bookmark-edit emoji-link">Edit</router-link>
+      <router-link 
+      :to="{name: 'edition', params: {initialData: bookmarkItem}}"  
+      class="bookmark-edit emoji-link">
+        Edit
+      </router-link>
       <a v-on:click.prevent="remove" class="bookmark-remove emoji-link">Remove</a>
     </div>
   </a>

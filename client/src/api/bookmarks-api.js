@@ -38,8 +38,10 @@ export default {
     }
   },
 
-  async updateBookmark () {
-
+  async updateBookmark ({ bookmark }) {
+    bookmark.tags = bookmark.tags.map(t => t.id)
+    const res = await axios.put('/bookmarks/', bookmark)
+    return {data: res.data}
   },
 
   async addTag({ tag }) {

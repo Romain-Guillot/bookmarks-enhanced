@@ -8,7 +8,7 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home,
     meta: {
       title: 'Bookmark enhanced',
@@ -16,15 +16,18 @@ Vue.use(VueRouter)
   },
   {
     path: '/edition',
-    name: 'Edition',
+    name: 'edition',
     component: EditionTemplate,
-    props: {
-      child: 'BookmarkForm'
+    props: (route) => {
+      return {
+        initialData: route.params.initialData,
+        child: 'BookmarkForm'
+      }
     }
   },
   {
     path: '/addtag',
-    name: 'Add tag',
+    name: 'addtag',
     component: EditionTemplate,
     props: {
       child: 'TagForm'

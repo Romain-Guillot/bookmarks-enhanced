@@ -3,12 +3,14 @@ import makePostBookmarks from './post_bookmark.js'
 import makeDeleteBookmark from './delete_bookmark.js'
 import makePostTag from './post_tag.js'
 import makeDeleteTag from './delete_tag.js'
+import makeUpdateBookmark from './update_bookmark.js'
 import { 
   listBookmarks,
   addBookmark,
   removeBookmark,
   addTag,
-  removeTag
+  removeTag,
+  editBookmark
 } from '../../use_cases/index.js'
 
 
@@ -30,4 +32,8 @@ export const postTag = makePostTag({
 
 export const deleteTag = makeDeleteTag({
   removeTag: removeTag
+})
+
+export const updateBookmark = makeUpdateBookmark({
+  editBookmark: editBookmark
 })

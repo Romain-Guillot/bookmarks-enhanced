@@ -23,9 +23,18 @@ export default {
       tags: data.tags
     })
     const res = await bookmark.save()
-    console.log(res)
     return {
       id: res._id,
+      ...data
+    }
+  },
+
+  async update({ data }) {
+    const id = data.id
+    delete data.id
+    const res = await BookmarkModel.updateOne({ _id: id }, data)
+    return {
+      id: id,
       ...data
     }
   },

@@ -30,6 +30,16 @@ const actions = {
       commit('removeBookmark', res.id)
     }
   },
+  async editBookmark({ commit }, data) {
+    const res = await bookmarksAPI.updateBookmark({
+      bookmark: data
+    })
+    if (res.error) {
+      console.log(res.error)
+    } else {
+      commit('updateBookmark', res.data)
+    }
+  },
   async addTag ({ commit }, tag) {
     const res = await bookmarksAPI.addTag({ tag })
     commit('addTag', res.data)
@@ -59,15 +69,19 @@ function preprocessBookmark(data) {
 }
 
 const mutations = {
-  removeBookmark(state, bookmarkID) {
+  removeBookmark (state, bookmarkID) {
     const index = state.bookmarks.findIndex(b => b.id === bookmarkID)
     state.bookmarks.splice(index, 1)
   },
-  addBookmark(state, bookmark) {
+  addBookmark (state, bookmark) {
     state.bookmarks.push(bookmark)
   },
   setBookmarks (state, bookmarks) {
     state.bookmarks = bookmarks
+  },
+  updateBookmark (state, bookmark) {
+    const index = state.bookmarks.findIndex(b => b.id === bookmark.id)
+    state.bookmarks[index] = bookmark
   },
   setTags (state, tags) {
     state.tags = tags

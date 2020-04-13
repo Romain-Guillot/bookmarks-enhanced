@@ -1,7 +1,7 @@
 <template>
   <div class="edition-container">
     <a class="emoji-link home-link" v-on:click="goBack">Back</a>
-    <component v-bind:is="child"></component>
+    <component v-bind:is="child" v-bind="childProp"></component>
   </div>
 </template>
 
@@ -16,7 +16,14 @@ export default {
     TagForm,
     BookmarkForm
   },
-  props: ['child'],
+  props: ['child', 'initialData'],
+  computed: {
+    childProp () {
+      return {
+        initialData: this.initialData
+      }
+    }
+  },
   methods: {
     goBack () {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')

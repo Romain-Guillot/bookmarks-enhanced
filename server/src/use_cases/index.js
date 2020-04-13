@@ -3,6 +3,7 @@ import makeAddBookmark from './add_bookmark.js'
 import makeRemoveBookmark from './remove_bookmark.js'
 import makeAddTag from './add_tag.js'
 import makeRemoveTag from './remove_tag.js'
+import makeEditBookmark from './edit-bookmark.js'
 import { bookmarksDatabase, tagsDatabase } from '../interface-adapters/data_access/index.js'
 
 /*
@@ -29,4 +30,8 @@ export const addTag = makeAddTag({
 
 export const removeTag = makeRemoveTag({
   tagsDB: tagsDatabase
+})
+
+export const editBookmark = makeEditBookmark({
+  bookmarksDB: bookmarksDatabase
 })

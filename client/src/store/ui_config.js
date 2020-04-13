@@ -1,5 +1,5 @@
 const state = {
-  condensed: false
+  condensed: true
 }
 
 const actions = {

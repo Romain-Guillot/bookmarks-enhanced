@@ -6,7 +6,7 @@
     </div>
     <div class="form-child">
       <label for="link">Link</label>
-      <input type="text" name="" id="link" v-model="bookmark.link">
+      <input type="text" name="" id="link" v-model="bookmark.url">
     </div>
     <div class="form-child">
       <label for="tags">Tags</label>
@@ -25,25 +25,31 @@ import TagList from './TagList'
 
 export default {
   name: 'BookmarkForm',
+  props: ['initialData'],
   components: {
     TagList
   },
   data() {
     return {
       bookmark : {
-        title: "",
-        link: "",
-        tags: []
+        title: this.initialData != null ? this.initialData.title : "",
+        url: this.initialData != null ? this.initialData.url : "",
+        tags: this.initialData != null ? this.initialData.tags : ""
       }
     }
   },
   methods: {
     onSelectedTagsChanged (selectedTags) {
-      console.log("ok")
       this.bookmark.tags = selectedTags
     },
     save () {
-      this.$store.dispatch('bookmarks/addBookmark', this.bookmark)
+      if (this.initialData != null && this.initialData.id != null ) {
+        const id = this.initialData.id;
+        console.log(this.bookmark)
+        this.$store.dispatch('bookmarks/editBookmark', {id, ...this.bookmark})
+      } else {
+        this.$store.dispatch('bookmarks/addBookmark', this.bookmark)
+      }
     }
   }
 }
