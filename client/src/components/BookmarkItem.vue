@@ -1,10 +1,11 @@
 <template>
   <a :href="bookmarkItem.url" target="_blank" class="bookmark-item-container" v-bind:class="condensed ? 'condensed-item' : 'expanded-item'">
     <div class="bookmark-main">
-      <TagItem  v-for="tag in bookmarkItem.tags" v-bind:key="tag.id" v-bind:tag=tag v-bind:condensed=condensed />
-      <div>
-        <h2>{{ bookmarkItem.title }}</h2><span class="bookmark-date">{{ bookmarkItem.createdAt }}</span>
+      <div class="bookmark-tags-container">
+        <TagItem  v-for="tag in bookmarkItem.tags" v-bind:key="tag.id" v-bind:tag=tag v-bind:condensed=condensed />
       </div>
+      <h2>{{ bookmarkItem.title }}</h2>
+      <span class="bookmark-date">{{ bookmarkItem.createdAt }}</span>
       <span class="bookmark-link">{{ bookmarkItem.url }}</span>
     </div>
     <div class="bookmark-options">
@@ -56,6 +57,7 @@ export default {
   flex: 1;
   grid-area: main;
   h2, .bookmark-date {
+    vertical-align: middle;
     display: inline-block;
     font-weight: 700;
     margin: 0;
@@ -64,6 +66,10 @@ export default {
   .bookmark-link {
     color: $front-color-light;
     font-weight: 500;
+    vertical-align: middle;
+  }
+  .bookmark-tags-container {
+    vertical-align: middle;
   }
 }
 
@@ -80,8 +86,10 @@ export default {
 
 .condensed-item {
   padding: 5px 0;
+  height: 2em;
   .bookmark-main {
     h2 {
+      display: inline-block;
       font-size: 1em;
       margin-right: 10px;
     }
@@ -89,13 +97,23 @@ export default {
       display: none;
     }
     .bookmark-link {
+      display: inline-block;
       font-size: 1em;
+    }
+    .bookmark-tags-container {
+      display: inline-block;
+      margin-right: 10px;
     }
   }
   .bookmark-options a {
     display: inline-block;
-    font-size: 0.9em;
+    font-size: 0em;
+    color: transparent;
     margin: 0 0 0 15px;
+    &::before {
+    color: $front-color;
+    font-size: 0.9rem;
+    }
   }
 }
 
@@ -111,6 +129,7 @@ export default {
       color: $front-color-light;
     }
     .bookmark-link {
+      display: block;
       font-size: 1.2em;
     }
   }

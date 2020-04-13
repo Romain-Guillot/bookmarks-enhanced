@@ -9,10 +9,8 @@ const state = {
 const actions = {
   async getAllBookmarks ({ commit }) {
     const res = (await bookmarksAPI.getBookmarks())
-
     commit('setTags', res.tags)
     const bookmarks = res.bookmarks.map(b => preprocessBookmark(b))
-    console.log(bookmarks)
     commit('setBookmarks', bookmarks)
 
   },
@@ -33,8 +31,8 @@ const actions = {
     }
   },
   async addTag ({ commit }, tag) {
-    await bookmarksAPI.addTag({ tag })
-    commit('addTag', tag)
+    const res = await bookmarksAPI.addTag({ tag })
+    commit('addTag', res.data)
   }
 }
 
@@ -75,7 +73,7 @@ const mutations = {
     state.tags = tags
   },
   addTag (state, tag) {
-    state.tags.push(tag)
+    state.tags[tag.id] = tag
   }
 }
 

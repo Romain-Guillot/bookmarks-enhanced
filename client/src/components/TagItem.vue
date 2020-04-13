@@ -28,12 +28,12 @@ export default {
   display: inline-block;
   padding: 10px;
   border-radius: $radius;
-  margin: 0 5px 5px 0;
+  margin: 2px 4px 2px 0;
   cursor: pointer;
 }
 
 .condensed-tag {
-  padding: 5px;
+  padding: 3px;
   font-size: 0.8em;
 }
 

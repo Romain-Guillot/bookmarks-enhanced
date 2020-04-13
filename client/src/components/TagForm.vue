@@ -2,7 +2,7 @@
    <div>
     <div class="form-child">
       <label for="name">Name</label>
-      <input type="text" name="" id="name" v-model="tag.name">
+      <input type="text" name="" id="name" v-model="name">
     </div>
     <div class="form-child">
       <label for="color">Color</label>
@@ -28,11 +28,8 @@ export default {
   },
   data () {
     return {
-      color: '#a44d33',
-      tag: {
-        name: "",
-        color: "",
-      }
+      color: "#" + Math.floor(Math.random() * 0xfffff),
+      name: ''
     }
   },
   computed: {
@@ -42,7 +39,10 @@ export default {
   },
   methods: {
     save () {
-      this.$store.dispatch('bookmarks/addTag', this.tag)
+      this.$store.dispatch('bookmarks/addTag', {
+        name: this.name,
+        color: parseInt(this.color.substr(1), 16)
+      })
     },
     onColorSelection (newColor) {
       this.color = newColor.hex

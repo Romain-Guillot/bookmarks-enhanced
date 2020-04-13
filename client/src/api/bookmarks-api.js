@@ -44,6 +44,7 @@ export default {
 
   async addTag({ tag }) {
     const res = await axios.post('/tags/', tag)
+    res.data.color = intToRgb(res.data.color)
     return { data: res.data }
   }
 }
