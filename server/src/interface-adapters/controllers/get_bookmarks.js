@@ -1,14 +1,13 @@
 export default function makeGetBookmarks({ listBookmarks }) {
   return async () => {
-    console.log("CONTROLLER: get bookmarks")
     const headers = {
       'Content-Type': 'application/json'
     }
-    const bookmarks = await listBookmarks()
+    const data = await listBookmarks()
     return {
       headers,
-      statusCode: 200,
-      body: bookmarks,
+      statusCode: data == null ? 500 : 200,
+      body: data == null ? "Cannot return the bookmarks and tags" : data
     }
   }
 }

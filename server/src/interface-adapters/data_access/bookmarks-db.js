@@ -2,6 +2,10 @@ import { BookmarkModel } from './models.js'
 
 
 export default {
+  /**
+   * If success -> return an array of object
+   * If error   -> Throw an exception
+   */
   async find() {
     const res = await BookmarkModel.find();
     return res.map(bookmark => {

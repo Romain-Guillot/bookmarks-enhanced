@@ -2,15 +2,23 @@ import axios from 'axios'
 
 
 export default {
+  /**
+   * If success -> {bookmarks, tags}
+   * If error   -> null
+   */
   async getBookmarks () {
     const res = await axios.get('/bookmarks/')
-    const tags = res.data.tags.reduce(function(map, obj) {
+    if (res.status != 200) {
+      return null
+    }
+    const tags = res.data.tags.reduce((map, obj) => {
       obj.color = intToRgb(obj.color)
       map[obj.id] = obj
       return map
     }, {})
+    const bookmarks = res.data.bookmarks.map((b) => preprocessBookmark(b, tags))
     return {
-      bookmarks: res.data.bookmarks,
+      bookmarks: bookmarks,
       tags: tags
     }
   },
@@ -62,4 +70,27 @@ function intToRgb(int) {
     g: parseInt(result[2], 16),
     b: parseInt(result[3], 16)
   } : null;
+}
+
+
+function preprocessBookmark(data, tags) {
+  let bookmarkTags = []
+  if (data.tags != null)
+    bookmarkTags = data.tags.reduce((acc, tagID) => {
+      const tag = tags[tagID]
+      if (tag != null)
+        acc.push(tag)
+      return acc
+    }, [])
+  const dateFormatOpts = { year: 'numeric', month: 'short', day: 'numeric' }
+  let date = ''
+  if (data.createdAt)
+    date = (new Date(data.createdAt)).toLocaleDateString(undefined, dateFormatOpts)
+  return {
+    id: data.id,
+    url: data.url,
+    title: data.title,
+    createdAt: date,
+    tags: bookmarkTags
+  }
 }

@@ -2,6 +2,10 @@ import { TagModel } from './models.js'
 
 
 export default {
+  /**
+   * If success -> return an array of object
+   * If error   -> Throw an exception
+   */
   async find() {
     const res = await TagModel.find()
     return res.map(tag => {

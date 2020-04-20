@@ -12,16 +12,12 @@ import {
 
 
 const options = {
-  customCss: '.swagger-ui .topbar { display: none }',
+  customCss: '.swagger-ui .topbar { display: none } .swagger-ui .info { margin: 15px 0 }',
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
       title: "Bookmarks Enhanced API Documention",
       version: "1.0.0",
-      license: {
-        name: "MIT",
-        url: "https://choosealicense.com/licenses/mit/"
-      },
     },
     servers: [
       {
@@ -44,25 +40,56 @@ router.get(
 
 /**
  * @swagger
-* /bookmarks:
+ * 
+ * components:
+ *   schemas:
+ *     Bookmark:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *         title:
+ *           type: string
+ *         url:
+ *           type: string
+ *         createdAt:
+ *           type: string
+ *     Tag:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *         name:
+ *           type: string
+ *         color:
+ *           type: integer
+ */
+
+
+/**
+ * @swagger
+ * 
+ * /bookmarks:
  *   get:
- *     description: Login to the application
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: username
- *         description: Username to use for login.
- *         in: formData
- *         required: true
- *         type: string
- *       - name: password
- *         description: User's password.
- *         in: formData
- *         required: true
- *         type: string
+ *     summary: Get the list of bookmarks and tags
  *     responses:
- *       200:
- *         description: login
+ *       '200':
+ *         description: Returns the boorkmaks and tags
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 bookmarks:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Bookmark'
+ *                 tags:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Tag'
+ *       '500':
+ *          description: Cannot return the bookmarks and tags
  */
 router.get('/bookmarks/', (req, res) => {
   getBookmarks().then((httpResponse) => {
@@ -72,6 +99,9 @@ router.get('/bookmarks/', (req, res) => {
   })
 })
 
+/**
+ * @swagger    
+ */
 router.post('/bookmarks/', (req, res) => {
   postBookmark(req).then((httpResponse) => {
     res.type('json')
