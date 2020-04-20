@@ -10,7 +10,7 @@
     </div>
     <div class="form-child">
       <label for="tags">Tags</label>
-      <TagList v-on:changed="onSelectedTagsChanged" />
+      <TagList v-on:changed="onSelectedTagsChanged" v-bind:initialSelected="bookmark.tags" />
     </div>
 
     <div class="form-child submit-container">

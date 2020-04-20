@@ -17,5 +17,8 @@ module.exports = {
   plugins: [
     // make sure to include the plugin!
     new VueLoaderPlugin()
-  ]
+  ],
+  configureWebpack: {
+    devtool: 'source-map'
+  }
 }

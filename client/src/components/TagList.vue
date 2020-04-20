@@ -21,12 +21,13 @@ import TagItem from './TagItem'
 
 export default {
   name: "TagList",
+  props: ['initialSelected'],
   components: {
     TagItem
   },
   data () {
     return {
-      selectedTags: []
+      selectedTags: this.initialSelected == null ? [] : this.initialSelected
     }
   },
   computed: {
