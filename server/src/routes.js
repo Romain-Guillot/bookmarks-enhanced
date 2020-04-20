@@ -40,7 +40,6 @@ router.get(
 
 /**
  * @swagger
- * 
  * components:
  *   schemas:
  *     Bookmark:
@@ -68,7 +67,6 @@ router.get(
 
 /**
  * @swagger
- * 
  * /bookmarks:
  *   get:
  *     summary: Get the list of bookmarks and tags
@@ -91,56 +89,33 @@ router.get(
  *       '500':
  *          description: Cannot return the bookmarks and tags
  */
-router.get('/bookmarks/', (req, res) => {
-  getBookmarks().then((httpResponse) => {
-    res.type('json')
-    res.status(httpResponse.statusCode)
-    res.send(httpResponse.body)
-  })
-})
+router.get('/bookmarks/', expressCallback(getBookmarks))
 
 /**
- * @swagger    
+ * @swagger
+ * /bookmarks:
+ *   post:
+ *     summary: Add new bookmark
  */
-router.post('/bookmarks/', (req, res) => {
-  postBookmark(req).then((httpResponse) => {
-    res.type('json')
-    res.status(httpResponse.statusCode)
-    res.send(httpResponse.body)
-  })
-})
+router.post('/bookmarks/', expressCallback(postBookmark))
 
-router.delete('/bookmarks/', (req, res) => {
-  deleteBookmark(req).then((httpResponse) => {
-    res.type('json')
-    res.status(httpResponse.statusCode)
-    res.send(httpResponse.body)
-  })
-})
+router.delete('/bookmarks/', expressCallback(deleteBookmark))
 
-router.put('/bookmarks/', (req, res) => {
-  updateBookmark(req).then((httpResponse) => {
-    res.type('json')
-    res.status(httpResponse.statusCode)
-    res.send(httpResponse.body)
-  })
-})
+router.put('/bookmarks/',  expressCallback(updateBookmark))
 
-router.post('/tags/', (req, res) => {
-  postTag(req).then((httpResponse) => {
-    res.type('json')
-    res.status(httpResponse.statusCode)
-    res.send(httpResponse.body)
-  })
-})
+router.post('/tags/', expressCallback(postTag))
+router.delete('/tags/', expressCallback(deleteTag))
 
-router.delete('/tags/', (req, res) => {
-  deleteTag(req).then((httpResponse) => {
-    res.type('json')
-    res.status(httpResponse.statusCode)
-    res.send(httpResponse.body)
-  })
-})
+
+function expressCallback(controller) {
+  return (req, res) => {
+    controller(req).then((httpResponse) => {
+      res.type('json')
+      res.status(httpResponse.statusCode)
+      res.send(httpResponse.body)
+    })
+  }
+}
 
 
 export default router
